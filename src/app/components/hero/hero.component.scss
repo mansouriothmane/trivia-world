@@ -1,0 +1,19 @@
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    .responsive {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .hero-section {
+        flex-direction: row;
+        align-items: center;
+    }
+}

@@ -1,10 +1,15 @@
-<h1>{{ headline }}</h1>
-<h3>{{ subheadline }}</h3>
-<ul>
-  @for (feature of keyFeatures; track feature.id) {
-  <li>
-    {{ feature.name }} {{ feature.name && " :" }}
-    {{ feature.description }}
-  </li>
-  }
-</ul>
+<div class="hero-section">
+  <div class="text-content">
+    <h1>{{ headline }}</h1>
+    <h3>{{ subheadline }}</h3>
+    <ul>
+      @for (feature of keyFeatures; track feature.id) {
+      <li>
+        {{ feature.name }}
+      </li>
+      }
+    </ul>
+    <button>{{ callToAction }}</button>
+  </div>
+  <img [src]="imagePath" alt="Illustration" class="responsive" />
+</div>
