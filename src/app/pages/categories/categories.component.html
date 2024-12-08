@@ -1,0 +1,11 @@
+<p>categories works!</p>
+
+<div class="cards">
+  @for (category of categoryList(); track category.id) {
+  <div class="card">
+    <div class="title">
+      {{ category.name }}
+    </div>
+  </div>
+  }
+</div>
