@@ -26,4 +26,8 @@ export class CategoriesComponent implements OnInit {
         this.categoryList.set(response.trivia_categories);
       });
   }
+
+  onClickCategory = (category: Category) => {
+    this.categoriesService.setCategory(category);
+  };
 }
