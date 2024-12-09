@@ -1,13 +1,17 @@
 <p>questions works!</p>
 
-@for (question of questionList(); track $index) {
-<p [innerHTML]="question.question">
-  <!-- {{ question.question }} -->
-</p>
-@for (answer of shuffledAnswers(question); track $index) {
+@for (question of questionList(); track $index; let q_idx = $index) {
+<!-- the text must be passed as an innerHTML because it is encoded in HTML Unicode -->
+<p [innerHTML]="question.question"></p>
+@for (answer of shuffledAnswers(question); track $index; let a_idx = $index) {
 <ul>
-  <li [innerHTML]="answer">
-    <!-- {{ answer }} -->
+  <li>
+    <input
+      type="radio"
+      [id]="generate_input_id(q_idx, a_idx)"
+      [name]="'q' + q_idx"
+    />
+    <label [for]="generate_input_id(q_idx, a_idx)" [innerHTML]="answer"></label>
   </li>
 </ul>
 } }

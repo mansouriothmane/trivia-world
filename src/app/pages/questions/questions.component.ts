@@ -37,4 +37,8 @@ export class QuestionsComponent implements OnInit {
         return answers.sort(() => Math.random() - 0.5);
     }
   }
+
+  generate_input_id(question_index: number, answer_index: number) {
+    return `q-${question_index}_a-${answer_index}`;
+  }
 }
