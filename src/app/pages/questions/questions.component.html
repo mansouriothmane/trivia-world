@@ -1,0 +1,13 @@
+<p>questions works!</p>
+
+@for (question of questionList(); track $index) {
+<p [innerHTML]="question.question">
+  <!-- {{ question.question }} -->
+</p>
+@for (answer of shuffledAnswers(question); track $index) {
+<ul>
+  <li [innerHTML]="answer">
+    <!-- {{ answer }} -->
+  </li>
+</ul>
+} }

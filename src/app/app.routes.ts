@@ -14,4 +14,11 @@ export const routes: Routes = [
         (m) => m.CategoriesComponent
       ),
   },
+  {
+    path: 'questions',
+    loadComponent: () =>
+      import('./pages/questions/questions.component').then(
+        (m) => m.QuestionsComponent
+      ),
+  },
 ];

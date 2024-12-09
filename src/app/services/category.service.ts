@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class CategoriesService {
+export class CategoryService {
   http = inject(HttpClient);
   api_url = 'https://opentdb.com/api_category.php';
 

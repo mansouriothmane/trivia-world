@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { CategoriesService } from '../../services/categories.service';
+import { CategoryService } from '../../services/category.service';
 import { Category } from '../../model/category.type';
 import { catchError } from 'rxjs';
 
@@ -10,11 +10,11 @@ import { catchError } from 'rxjs';
   styleUrl: './categories.component.scss',
 })
 export class CategoriesComponent implements OnInit {
-  categoriesService = inject(CategoriesService);
+  categoryService = inject(CategoryService);
   categoryList = signal<Array<Category>>([]);
 
   ngOnInit(): void {
-    this.categoriesService
+    this.categoryService
       .getCategories()
       .pipe(
         catchError((err) => {
@@ -28,6 +28,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   onClickCategory = (category: Category) => {
-    this.categoriesService.setCategory(category);
+    this.categoryService.setCategory(category);
   };
 }
