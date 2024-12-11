@@ -24,3 +24,8 @@ export type QuestionQuery = {
   difficulty?: QDifficulty;
   type?: QType;
 };
+
+export type QuestionAnswer = {
+  question: Question;
+  answer: string;
+};

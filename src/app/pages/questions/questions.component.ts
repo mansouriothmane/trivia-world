@@ -1,17 +1,23 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
-import { QType, Question } from '../../model/question.type';
+import { QType, Question, QuestionAnswer } from '../../model/question.type';
 import { catchError } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-questions',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './questions.component.html',
   styleUrl: './questions.component.scss',
 })
 export class QuestionsComponent implements OnInit {
   questionService = inject(QuestionService);
   questionList = signal<Array<Question>>([]);
+  questionIndex = signal<number>(0);
+  questionAnswers = signal<Array<QuestionAnswer>>([]);
+  selectedAnswer = signal('');
+  isRunningQuiz = signal(true);
+  isLastQuestion = signal(false);
 
   ngOnInit(): void {
     this.questionService
@@ -22,7 +28,52 @@ export class QuestionsComponent implements OnInit {
           throw error;
         })
       )
-      .subscribe((response) => this.questionList.set(response.results));
+      .subscribe((response) => {
+        this.questionList.set(response.results);
+      });
+  }
+
+  nextQuestion() {
+    this.questionIndex.update((i) => i + 1);
+    if (this.questionIndex() === this.questionList().length - 1) {
+      this.isLastQuestion.set(true);
+    }
+  }
+
+  submitAnswer() {
+    const questionAnswer = {
+      question: this.questionList().at(this.questionIndex())!,
+      answer: this.selectedAnswer(),
+    };
+    this.questionAnswers.update((value) => [...value, questionAnswer]);
+    // Clear selected answer
+    this.selectedAnswer.set('');
+    console.log(this.questionAnswers());
+    if (this.questionIndex() < this.questionList().length - 1) {
+      this.nextQuestion();
+    }
+  }
+
+  endQuiz() {
+    this.submitAnswer();
+    this.isRunningQuiz.set(false);
+  }
+
+  getScore() {
+    let score = 0;
+    this.questionAnswers().forEach((value) => {
+      if (value.question.correct_answer === value.answer) {
+        score += 1;
+      }
+    });
+    return (score / this.questionList().length) * 100;
+  }
+
+  previousQuestion() {
+    if (this.questionIndex() > 0) {
+      this.questionIndex.update((i) => i - 1);
+      console.log(this.questionIndex());
+    }
   }
 
   shuffledAnswers(question: Question) {
@@ -34,11 +85,12 @@ export class QuestionsComponent implements OnInit {
           ...question.incorrect_answers,
           question.correct_answer,
         ];
-        return answers.sort(() => Math.random() - 0.5);
+        return answers;
+      // return answers.sort(() => Math.random() - 0.5);
     }
   }
 
   generate_input_id(question_index: number, answer_index: number) {
-    return `q-${question_index}_a-${answer_index}`;
+    return `q${question_index}-a${answer_index}`;
   }
 }
