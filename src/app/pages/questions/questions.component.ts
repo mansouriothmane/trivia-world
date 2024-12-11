@@ -18,6 +18,7 @@ export class QuestionsComponent implements OnInit {
   selectedAnswer = signal('');
   isRunningQuiz = signal(true);
   isLastQuestion = signal(false);
+  randomNumber = signal(Math.random());
 
   ngOnInit(): void {
     this.questionService
@@ -38,6 +39,7 @@ export class QuestionsComponent implements OnInit {
     if (this.questionIndex() === this.questionList().length - 1) {
       this.isLastQuestion.set(true);
     }
+    this.randomNumber.set(Math.random());
   }
 
   submitAnswer() {
@@ -69,24 +71,18 @@ export class QuestionsComponent implements OnInit {
     return (score / this.questionList().length) * 100;
   }
 
-  previousQuestion() {
-    if (this.questionIndex() > 0) {
-      this.questionIndex.update((i) => i - 1);
-      console.log(this.questionIndex());
-    }
-  }
-
   shuffledAnswers(question: Question) {
     switch (question.type) {
       case QType.BOOLEAN:
         return ['False', 'True'];
       case QType.MULTIPLE:
-        const answers = [
-          ...question.incorrect_answers,
-          question.correct_answer,
-        ];
+        const answers = [...question.incorrect_answers];
+        answers.splice(
+          ((answers.length + 1) * this.randomNumber()) | 0,
+          0,
+          question.correct_answer
+        );
         return answers;
-      // return answers.sort(() => Math.random() - 0.5);
     }
   }
 
