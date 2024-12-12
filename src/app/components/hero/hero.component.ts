@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
+  constructor(private router: Router) {}
+
   imagePath = 'illustration.svg';
   headline = 'Learn, Compete, and Have Fun!';
   subheadline =
@@ -26,4 +29,8 @@ export class HeroComponent {
     },
   ];
   callToAction = 'Start Your First Quiz';
+
+  onClickButton() {
+    this.router.navigate(['/categories']);
+  }
 }

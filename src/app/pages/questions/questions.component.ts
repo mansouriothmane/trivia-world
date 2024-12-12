@@ -3,6 +3,7 @@ import { QuestionService } from '../../services/question.service';
 import { QType, Question, QuestionAnswer } from '../../model/question.type';
 import { catchError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-questions',
@@ -20,9 +21,16 @@ export class QuestionsComponent implements OnInit {
   isLastQuestion = signal(false);
   randomNumber = signal(Math.random());
 
+  categoryId: number | null = null;
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe((params) => {
+      this.categoryId = Number(params.get('id'));
+    });
     this.questionService
-      .getQuestions({ amount: 10 })
+      .getQuestions({ amount: 10, category: this.categoryId! })
       .pipe(
         catchError((error) => {
           console.log(error);
@@ -88,5 +96,9 @@ export class QuestionsComponent implements OnInit {
 
   generate_input_id(question_index: number, answer_index: number) {
     return `q${question_index}-a${answer_index}`;
+  }
+
+  takeAnotherQuiz() {
+    this.router.navigate(['/categories']);
   }
 }

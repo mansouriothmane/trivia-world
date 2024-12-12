@@ -1,21 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .cards {
     display: flex;
+    flex-direction: column;
     justify-content: start;
     align-items: center;
-    flex-wrap: wrap;
     gap: 10px;
     width: 100%;
 }
 
 .card {
-    width: 100%;
-    max-width: 250px;
-    height: 100px;
+    background-color: #eceaea;
+    padding: 12px 8px;
     border-style: solid;
-    border-radius: 20px;
-    background-color: #ddd;
+    border-color: #eceaea;
+    box-sizing: border-box;
+    width: 100%;
 
-    .title {
-        margin: 10px;
+    &:hover {
+        background-color: #e1e1e1;
+        border-color: #333;
     }
 }

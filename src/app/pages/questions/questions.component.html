@@ -1,5 +1,4 @@
-<p>questions works!</p>
-<div>
+<div class="container">
   @if(isRunningQuiz()) {
   <form>
     <!-- the text must be passed as an innerHTML because it is encoded in HTML Unicode -->
@@ -31,6 +30,7 @@
   <div>Selected Value: {{ selectedAnswer() }}</div>
   <div>Score: {{ getScore() }}%</div>
   } @else {
-  <span>Your Score is {{ getScore() }}%</span>
+  <h3>Your Score is {{ getScore() }}%</h3>
+  <button (click)="takeAnotherQuiz()">Take another quiz</button>
   }
 </div>

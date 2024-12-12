@@ -1,11 +1,12 @@
-<p>categories works!</p>
-
-<div class="cards">
-  @for (category of categoryList(); track category.id) {
-  <div class="card" (click)="onClickCategory(category)">
-    <div class="title">
-      {{ category.name }}
+<div class="container">
+  <h1>1. Choose a category</h1>
+  <div class="cards">
+    @for (category of categoryList(); track category.id) {
+    <div class="card" (click)="onClickCategory(category)">
+      <div class="title">
+        {{ category.name }}
+      </div>
     </div>
+    }
   </div>
-  }
 </div>

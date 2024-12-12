@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../model/category.type';
 import { catchError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -12,6 +13,8 @@ import { catchError } from 'rxjs';
 export class CategoriesComponent implements OnInit {
   categoryService = inject(CategoryService);
   categoryList = signal<Array<Category>>([]);
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.categoryService
@@ -28,6 +31,10 @@ export class CategoriesComponent implements OnInit {
   }
 
   onClickCategory = (category: Category) => {
-    this.categoryService.setCategory(category);
+    this.router.navigate(['/questions'], {
+      queryParams: {
+        id: category.id,
+      },
+    });
   };
 }
