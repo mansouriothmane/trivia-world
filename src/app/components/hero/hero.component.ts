@@ -31,6 +31,6 @@ export class HeroComponent {
   callToAction = 'Start Your First Quiz';
 
   onClickButton() {
-    this.router.navigate(['/categories']);
+    this.router.navigate(['/start']);
   }
 }
