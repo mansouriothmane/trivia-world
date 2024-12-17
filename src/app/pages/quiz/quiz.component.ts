@@ -30,7 +30,6 @@ export class QuizComponent {
   questionAnswers = signal<Array<QuestionAnswer>>([]);
 
   saveAnswers(answers: Array<QuestionAnswer>) {
-    console.log(answers);
     this.questionAnswers.set(answers);
   }
 

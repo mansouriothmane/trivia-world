@@ -9,26 +9,27 @@
     justify-content: start;
     align-items: center;
     gap: 10px;
+    margin: 16px 0 0 0;
     width: 100%;
 }
 
 .card {
-    background-color: #eceaea;
+    background: hsl(0, 0%, 95%);
     padding: 12px 8px;
     border-style: solid;
-    border-color: #eceaea;
+    border-color: hsl(0, 0%, 85%);
+    border-radius: 4px;
     box-sizing: border-box;
     width: 100%;
 
     &:hover {
-        background-color: #e1e1e1;
-        border-color: #333;
+        background: hsl(0, 0%, 90%);
+        border-color: hsl(0, 0%, 80%);
+        box-shadow: 0 2px 4px hsl(0, 0%, 80%);
     }
 }
 
 .no-card {
     @extend .card;
-    background-color: #f9f7f7;
     border-style: dashed;
-    border-color: #bab5b5;
 }

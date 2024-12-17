@@ -28,9 +28,9 @@ export class HeroComponent {
       name: 'Prove your skills and climb the leaderboard while learning something new',
     },
   ];
-  callToAction = 'Start Your First Quiz';
+  callToAction = 'Take a Quiz';
 
   onClickButton() {
-    this.router.navigate(['/start']);
+    this.router.navigate(['/quiz']);
   }
 }

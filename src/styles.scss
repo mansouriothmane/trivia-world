@@ -1,4 +1,42 @@
-html, body {
+:root {
+    --ff: "Montserrat", sans-serif;
+    --h1: 800 2rem / 1.2em var(--ff);
+    --p: 400 1rem / 1.5em var(--ff);
+    --hue: 60;
+    --tertiary-hue: calc(var(--hue) + 300);
+    --accent-hue: calc(var(--hue) + 60);
+    --primary-color: hsl(var(--hue), 50%, 90%);
+    --secondary-color: hsl(var(--hue), 50%, 10%);
+    --tertiary-color: hsl(var(--tertiary-hue), 80%, 20%);
+    --accent-color: hsl(var(--accent-hue), 80%, 20%);
+}
+
+body {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    font-family: var(--ff);
+    font: var(--p);
+}
+
+h1 {
+    font: var(--h1);
+    margin: 0px;
+}
+
+button {
+    display: inline-block;
+    color: var(--primary-color);
+    background: var(--accent-color);
+    border-radius: 4px;
+    margin: 8px 8px 8px 0px;
+    padding: 12px 20px;
+    border: solid 2px var(--accent-color);
+    font: 600 1rem / 1em var(--ff);
+    cursor: pointer;
+}
+
+html,
+body {
     margin: 0;
     padding: 0;
 }

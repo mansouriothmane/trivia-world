@@ -16,7 +16,6 @@ export class CategoryService {
   }
 
   setCategory(category: Category) {
-    console.log(category);
     this.selectedCategory = category;
   }
 

@@ -39,7 +39,6 @@ export class QuestionsComponent implements OnInit {
   @Output() saveAnswersEvent = new EventEmitter<Array<QuestionAnswer>>();
 
   saveAnswers = () => {
-    console.log(this.questionAnswers());
     this.saveAnswersEvent.emit(this.questionAnswers());
   };
 
@@ -73,7 +72,6 @@ export class QuestionsComponent implements OnInit {
     this.questionAnswers.update((value) => [...value, questionAnswer]);
     // Clear selected answer
     this.selectedAnswer.set('');
-    console.log(this.questionAnswers());
     if (this.questionIndex() < this.questionList().length - 1) {
       this.nextQuestion();
     }
