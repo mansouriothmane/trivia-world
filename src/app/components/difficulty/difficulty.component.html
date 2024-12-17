@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>2. Choose a difficulty</h1>
+  <div class="cards">
+    <div class="no-card" (click)="onClickDifficulty(null)">Any Difficulty</div>
+    @for (item of difficultyItems; track $index) {
+    <div class="card" (click)="onClickDifficulty(item.value)">
+      {{ item.name }}
+    </div>
+    }
+  </div>
+</div>

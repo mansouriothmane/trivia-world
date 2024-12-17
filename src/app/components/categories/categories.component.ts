@@ -1,8 +1,7 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, input, OnInit, signal } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../model/category.type';
 import { catchError } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -14,7 +13,7 @@ export class CategoriesComponent implements OnInit {
   categoryService = inject(CategoryService);
   categoryList = signal<Array<Category>>([]);
 
-  constructor(private router: Router) {}
+  @Input() onClickCategory!: (category: Category | null) => void;
 
   ngOnInit(): void {
     this.categoryService
@@ -29,12 +28,4 @@ export class CategoriesComponent implements OnInit {
         this.categoryList.set(response.trivia_categories);
       });
   }
-
-  onClickCategory = (category: Category) => {
-    this.router.navigate(['/questions'], {
-      queryParams: {
-        id: category.id,
-      },
-    });
-  };
 }

@@ -25,3 +25,10 @@
         border-color: #333;
     }
 }
+
+.no-card {
+    @extend .card;
+    background-color: #f9f7f7;
+    border-style: dashed;
+    border-color: #bab5b5;
+}

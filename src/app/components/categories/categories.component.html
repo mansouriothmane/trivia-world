@@ -1,11 +1,10 @@
 <div class="container">
   <h1>1. Choose a category</h1>
   <div class="cards">
+    <div class="no-card" (click)="onClickCategory(null)">Any Category</div>
     @for (category of categoryList(); track category.id) {
     <div class="card" (click)="onClickCategory(category)">
-      <div class="title">
-        {{ category.name }}
-      </div>
+      {{ category.name }}
     </div>
     }
   </div>

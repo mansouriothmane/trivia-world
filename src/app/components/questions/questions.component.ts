@@ -1,9 +1,22 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  input,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
 import { QuestionService } from '../../services/question.service';
-import { QType, Question, QuestionAnswer } from '../../model/question.type';
+import {
+  QType,
+  Question,
+  QuestionAnswer,
+  QuestionQuery,
+} from '../../model/question.type';
 import { catchError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-questions',
@@ -17,20 +30,22 @@ export class QuestionsComponent implements OnInit {
   questionIndex = signal<number>(0);
   questionAnswers = signal<Array<QuestionAnswer>>([]);
   selectedAnswer = signal('');
-  isRunningQuiz = signal(true);
   isLastQuestion = signal(false);
   randomNumber = signal(Math.random());
 
-  categoryId: number | null = null;
+  query = input.required<QuestionQuery>();
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  @Input() showResult!: () => void;
+  @Output() saveAnswersEvent = new EventEmitter<Array<QuestionAnswer>>();
+
+  saveAnswers = () => {
+    console.log(this.questionAnswers());
+    this.saveAnswersEvent.emit(this.questionAnswers());
+  };
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((params) => {
-      this.categoryId = Number(params.get('id'));
-    });
     this.questionService
-      .getQuestions({ amount: 10, category: this.categoryId! })
+      .getQuestions(this.query())
       .pipe(
         catchError((error) => {
           console.log(error);
@@ -66,17 +81,9 @@ export class QuestionsComponent implements OnInit {
 
   endQuiz() {
     this.submitAnswer();
-    this.isRunningQuiz.set(false);
-  }
-
-  getScore() {
-    let score = 0;
-    this.questionAnswers().forEach((value) => {
-      if (value.question.correct_answer === value.answer) {
-        score += 1;
-      }
-    });
-    return (score / this.questionList().length) * 100;
+    // Send answers to parent component
+    this.saveAnswers();
+    this.showResult();
   }
 
   shuffledAnswers(question: Question) {
@@ -96,9 +103,5 @@ export class QuestionsComponent implements OnInit {
 
   generate_input_id(question_index: number, answer_index: number) {
     return `q${question_index}-a${answer_index}`;
-  }
-
-  takeAnotherQuiz() {
-    this.router.navigate(['/categories']);
   }
 }

@@ -8,16 +8,21 @@ export const routes: Routes = [
       import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
   {
+    path: 'start',
+    loadComponent: () =>
+      import('./pages/quiz/quiz.component').then((m) => m.QuizComponent),
+  },
+  {
     path: 'categories',
     loadComponent: () =>
-      import('./pages/categories/categories.component').then(
+      import('./components/categories/categories.component').then(
         (m) => m.CategoriesComponent
       ),
   },
   {
     path: 'questions',
     loadComponent: () =>
-      import('./pages/questions/questions.component').then(
+      import('./components/questions/questions.component').then(
         (m) => m.QuestionsComponent
       ),
   },
