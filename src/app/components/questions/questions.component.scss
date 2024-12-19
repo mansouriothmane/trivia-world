@@ -1,3 +1,50 @@
-li {
-    list-style: none;
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .btn {
+        width: 250px;
+    }
+}
+
+.question {
+    font: 400 1.125rem / 1.5em var(--ff);
+}
+
+
+// COPIED FROM categories
+// PUT THIS in a common folder, because it is used in questions, categories and difficulty 
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    // margin: 16px 0 0 0;
+    width: 100%;
+}
+
+.card {
+    background: hsl(0, 0%, 95%);
+    padding: 12px 8px;
+    border-style: solid;
+    border-color: hsl(0, 0%, 85%);
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:hover {
+        background: hsl(0, 0%, 90%);
+        border-color: hsl(0, 0%, 80%);
+        box-shadow: 0 2px 4px hsl(0, 0%, 80%);
+    }
+
+    &.selected {
+        background: hsl(0, 0%, 85%);
+        border-color: hsl(0, 0%, 75%);
+    }
 }

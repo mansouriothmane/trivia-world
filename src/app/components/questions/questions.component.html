@@ -1,29 +1,24 @@
-<div class="container">
-  <form>
+<div>
+  <form class="container">
     <!-- the text must be passed as an innerHTML because it is encoded in HTML Unicode -->
-    <p [innerHTML]="questionList()[questionIndex()].question"></p>
-    <ul>
+    <p
+      class="question"
+      [innerHTML]="questionList()[questionIndex()].question"
+    ></p>
+    <div class="cards">
       @for (answer of shuffledAnswers(questionList()[questionIndex()]); track
       $index) {
-      <li>
-        <input
-          type="radio"
-          [id]="generate_input_id(questionIndex(), $index)"
-          [name]="'q' + questionIndex()"
-          [value]="answer"
-          [(ngModel)]="selectedAnswer"
-        />
-        <label
-          [innerHTML]="answer"
-          [for]="generate_input_id(questionIndex(), $index)"
-        >
-        </label>
-      </li>
+      <div
+        [class]="selectedAnswer() === answer ? 'card selected' : 'card'"
+        class="card"
+        [innerHTML]="answer"
+        (click)="setSelectedAnswer(answer)"
+      ></div>
       }
-    </ul>
+    </div>
     @if (isLastQuestion()) {
-    <button (click)="endQuiz()">Finish Quiz</button> } @else {
-    <button (click)="submitAnswer()">Next</button>
+    <button class="btn" (click)="endQuiz()">Finish Quiz</button> } @else {
+    <button class="btn" (click)="submitAnswer()">Next</button>
     }
   </form>
 </div>

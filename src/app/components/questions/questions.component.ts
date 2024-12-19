@@ -54,6 +54,10 @@ export class QuestionsComponent implements OnInit {
       .subscribe((response) => {
         this.questionList.set(response.results);
       });
+}
+
+  setSelectedAnswer(answer: string) {
+    this.selectedAnswer.set(answer);
   }
 
   nextQuestion() {
