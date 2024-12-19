@@ -17,8 +17,13 @@
       }
     </div>
     @if (isLastQuestion()) {
-    <button class="btn" (click)="endQuiz()">Finish Quiz</button> } @else {
-    <button class="btn" (click)="submitAnswer()">Next</button>
+    <button class="btn" [disabled]="!selectedAnswer()" (click)="endQuiz()">
+      Finish Quiz
+    </button>
+    } @else {
+    <button class="btn" [disabled]="!selectedAnswer()" (click)="submitAnswer()">
+      Next
+    </button>
     }
   </form>
 </div>
