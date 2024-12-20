@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HeroComponent {
   constructor(private router: Router) {}
 
-  imagePath = 'illustration.svg';
+  imagePath = 'illustration3.png';
   headline = 'Learn, Compete, and Have Fun!';
   subheadline =
     'Dive into thousands of quizzes across diverse topics, test your knowledge, and compete with friends';
