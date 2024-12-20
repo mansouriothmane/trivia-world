@@ -1,16 +1,18 @@
-@switch (step()) { @case (0) {
-<app-categories [onClickCategory]="handleCategory.bind(this)" />
-} @case (1) {
-<app-difficulty [onClickDifficulty]="handleDifficulty.bind(this)" />
-} @case (2) {
-<app-questions
-  [query]="questionsQuery()"
-  [showResult]="nextStep.bind(this)"
-  (saveAnswersEvent)="saveAnswers($event)"
-/>
-} @case (3) {
-<app-score
-  [answers]="questionAnswers()"
-  [restartQuiz]="restartQuiz.bind(this)"
-/>
-} }
+<div class="container">
+  @switch (step()) { @case (0) {
+  <app-categories [onClickCategory]="handleCategory.bind(this)" />
+  } @case (1) {
+  <app-difficulty [onClickDifficulty]="handleDifficulty.bind(this)" />
+  } @case (2) {
+  <app-questions
+    [query]="questionsQuery()"
+    [showResult]="nextStep.bind(this)"
+    (saveAnswersEvent)="saveAnswers($event)"
+  />
+  } @case (3) {
+  <app-score
+    [answers]="questionAnswers()"
+    [restartQuiz]="restartQuiz.bind(this)"
+  />
+  } }
+</div>

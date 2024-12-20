@@ -13,10 +13,12 @@ header {
         align-items: center;
         width: 100%;
 
-        > span {
+        >p {
             margin: 0;
             padding: 0;
+            color: white;
             cursor: pointer;
+
             &:hover {
                 color: #777;
             }
@@ -28,6 +30,7 @@ header {
 
         li {
             cursor: pointer;
+
             &:hover {
                 color: #777;
             }

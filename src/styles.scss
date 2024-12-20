@@ -2,7 +2,7 @@
 
 :root {
     --ff: "Montserrat", sans-serif;
-    --h1: 700 2rem / 1.2em var(--ff);
+    --h1: 500 2rem / 1.2em var(--ff);
     --p: 400 1rem / 1.5em var(--ff);
     --hue: 60;
     --tertiary-hue: calc(var(--hue) + 300);
@@ -22,7 +22,12 @@ body {
 
 h1 {
     font: var(--h1);
-    margin: 0px;
+    margin: 0;
+}
+
+span {
+    color: var(--tertiary-color);
+    font: 700 2rem / 1em var(--ff);
 }
 
 button {
