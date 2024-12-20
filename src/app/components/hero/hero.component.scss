@@ -1,19 +1,80 @@
 .hero-section {
     display: flex;
     flex-direction: column;
-    justify-content: start;
     align-items: center;
+    padding: 20px;
+}
 
-    .responsive {
-        width: 100%;
-        max-width: 500px;
-        height: auto;
+.text-content,
+.svg-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.text-content {
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.svg-container {
+    display: none;
+    padding: 0 20px;
+}
+
+.svg-container img {
+    max-width: 100%;
+    height: auto;
+    width: 350px;
+}
+
+@media (max-width: 768px) {
+    .svg-container.small-screen {
+        display: block;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .svg-container img {
+        width: 300px;
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media (min-width: 769px) {
     .hero-section {
         flex-direction: row;
         align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .text-content,
+    .svg-container.large-screen {
+        max-width: 50%;
+    }
+
+    .svg-container.large-screen {
+        display: block;
+        text-align: right;
+    }
+
+    .svg-container img {
+        width: 450px;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    .hero-section {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .text-content,
+    .svg-container.large-screen {
+        max-width: 45%;
+    }
+
+    .svg-container img {
+        width: 500px;
     }
 }
