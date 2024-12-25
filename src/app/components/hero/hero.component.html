@@ -3,7 +3,7 @@
     <h1>{{ headline }}</h1>
     <p>{{ subheadline }}</p>
     <div class="svg-container small-screen">
-      <img [src]="imagePath" alt="Illustration" class="responsive" />
+      <img [src]="imagePath" alt="Illustration" />
     </div>
     <ul>
       @for (feature of keyFeatures; track feature.id) {
