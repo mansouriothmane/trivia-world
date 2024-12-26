@@ -1,59 +1,30 @@
-# QuizApp
+# Trivia World
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.3.
+Trivia World is a single-page application that allows users to take trivia quizzes, with options like the topic and the difficulty of the questions. The Angular framework has been used (v19). The data is retrieved dynamically from an open source online database (OpenTDB).
 
-## Development server
+## Motivation
 
-To start a local development server, run:
+I built this app as a way of "learning by doing", with a main goal of understanding the Angular framework. It was also an opportunity to discover tools like Sass.
 
-```bash
-ng serve
-```
+## Encoutered problems
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- How to navigate between questions with next and reverse buttons while keeping the selected answer. Had to read about Angular forms : Reactive forms VS Template-driven forms. Solved by using the second one (the simplest).
 
-## Code scaffolding
+## User Flow
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- From the homepage, a button redirects to quiz creation
+- In quiz creation, the user selects a category (or no category), and a difficulty
+- From these conditions, a list of 10 random questions is retrieved and displayed
+- The user answers the current question and moves to the next question using the next button
+- At the end of the quiz, the score is displayed, with a button to quiz creation
 
-```bash
-ng generate component component-name
-```
+## What I Learned
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Sass (I benefited most from the feature of nesting css classes)
+- Difference between inline elements and block elements. We use `inline` and `block` to control position relative to siblings while display `flex` is for controling the layout of the children ([youtube video](https://www.youtube.com/watch?v=Xo3vyx2KSK8)).
+- Angular uses dependancy injection
+- Passing data child → parent (not existing with React) with event emitters
 
-```bash
-ng generate --help
-```
+## Demo
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+You can access the app from [HERE](https://trivia-world.vercel.app/). The app is responsive, so you can use in all types of devices (Mobile, Tablet, Computer).
